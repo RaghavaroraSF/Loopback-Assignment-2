@@ -1,0 +1,39 @@
+.form{
+    border: 5px solid black;
+    border-radius: 1rem;
+    width: 50%;
+    margin: 5rem auto;
+    font-size: 1.5rem;
+    padding: 2rem;
+    text-align:center;
+}
+label{
+    margin: 1rem 2rem;
+    display: grid;
+}
+
+input{
+    font-size: 1.5rem;
+}
+select{
+    font-size: 1.5rem;
+}
+.form div{
+    font-size: 1.25rem;
+    margin-top: 0.5rem;
+    border:0.3rem solid red;
+    background-color: rgb(216, 139, 139);
+    color: darkred;
+}
+.submit{
+    display: grid;
+    font-size: 2rem;
+    border-radius: 0.3rem;
+    padding: 1rem;
+    margin: 2rem auto;
+    background-color: rgb(64, 72, 99);
+    color: white;
+}
+.submit:disabled{
+    background-color: rgb(94, 107, 141);
+}

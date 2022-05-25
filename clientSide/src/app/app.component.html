@@ -1,0 +1,9 @@
+<h2>{{title}}</h2>
+<div>
+  <button (click) = "onClick()" *ngIf = "!showTable" class="load-btn">Load Data</button>
+  
+</div>
+
+<div *ngIf = "showTable">
+  <table-component></table-component>
+</div>

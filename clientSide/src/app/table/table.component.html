@@ -1,0 +1,49 @@
+<div>
+    <button (click) = "refresh()" class="refresh-btn">Refresh Data</button>
+</div>
+<table *ngIf = "users.length>0">
+    <thead>
+        <tr>
+            <th *ngFor = "let col of cols">{{col | uppercase}}</th>
+            <th>Operations</th>
+        </tr>
+    </thead>
+    <tr #r *ngFor = "let row of users;let i = index" [contentEditable] = "isEditable[i]">
+        <td id="fName">{{row.firstname}}</td>
+        <td id= "mName">{{row.middlename}}</td>
+        <td id="lName">{{row.lastname}}</td>
+        <td id="email">{{row.email}}</td>
+        <td id="phone">{{row.phone}}</td>
+        <td id="address">{{row.address}}</td>
+        <td [contentEditable] = "false">{{row.created_on}}</td>
+        <td [contentEditable] = "false">{{row.modified_on}}</td>
+
+        <td *ngIf= "!isEditable[i]">{{row.role}}</td>
+        <td *ngIf= "isEditable[i]" id= "roleContainer">
+            <select name="roles">
+                <option *ngFor = "let role of roleList" [value] = "role.key">{{role.name}}</option>
+            </select>
+        </td>
+              
+        <td *ngIf= "!isEditable[i]">{{row.customerId}}</td>
+        <td *ngIf= "isEditable[i]" id="customerContainer">
+            <select name="customers">
+                <option *ngFor = "let cust of customerList" [value] = "cust.id">{{cust.name}}</option>
+            </select>
+        </td>
+       
+        
+        <td [contentEditable] = "false">
+            <button class="edit" (click) = "update(i)" *ngIf = "!isEditable[i]">Edit</button>
+            <button class="delete" (click) = "delete(row,i)" *ngIf = "!isEditable[i]">Delete</button>
+            <button class="save" *ngIf = "isEditable[i]" [contentEditable] = "false" (click) = "save(row,i,r)">Save</button>
+            <button class="cancel" *ngIf= "isEditable[i]" [contentEditable] = "false" (click) = "cancel(i)">Cancel</button>
+        </td>
+    </tr>
+</table>
+
+<div>
+    <button class = "add-btn" *ngIf ="!isNewUser" (click) = "isNewUser = true">Add User</button>
+</div>
+<new-user-form *ngIf = "isNewUser" (onSubmit) = "this.create($event)"></new-user-form>
+<button class = "back" *ngIf ="isNewUser" (click) = "isNewUser = false">Back</button>
